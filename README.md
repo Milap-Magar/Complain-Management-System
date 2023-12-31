@@ -7,8 +7,8 @@
   -Css 
   -TailwindCss
 
-#Database: -MySql
+#Database: - MySql
 
-#Backend: 
+#Backend:
 -NodeJs 
--ExpressJS
+-ExpressJs
