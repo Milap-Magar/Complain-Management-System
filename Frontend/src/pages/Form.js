@@ -1,35 +1,28 @@
-import React, { useState } from 'react'
+import { useState } from 'react';
 
-const Form = () => {
-  const [ value, setValue ] = useState("");
-  const options = [
-    {faculty: "BCA", id: 1 },
-    {faculty: "BBA", id: 2 },
-    {faculty: "BIM", id: 3 },
-    {faculty: "BIT", id: 4 },
-    {faculty: "BSc.CSIT", id: 5 },
-    {faculty: "BSW", id: 6 }
-  ];
+function Form() {
+  const [data, setData] = useState({});
+
+  const handleChange = (e)=>{
+    setData({...data, [e.target.name]: e.target.value})
+  }
 
   const handleSubmit = (e) => {
-    setValue(e.target.value);
+    e.preventDefault();
+    alert(`Your email is: ${data.email} and your name is: ${data.name}`)
   }
 
   return (
-    <>  
-      <h1>Complain Form</h1>
-      <form >
-        <span>Faculty:</span>
-        <select name='faculty'>
-          {options.map(faculty => (
-            <option key={faculty.id} value={faculty.value} onSubmit={handleSubmit}>{faculty.faculty}</option>  
-          ))
-        }
-        </select>
-        <p>{value}</p>
-      </form>
-    </>
+    <form onSubmit={handleSubmit}>
+      <label>
+        Enter your email: <input type="email" name='email' value={data.email} onChange={handleChange} />
+      </label>
+      <label>
+        Enter your name: <input type="text" name='name' value={data.name} onChange={handleChange} />
+      </label>
+      <input type="submit" />
+    </form>
   )
 }
 
-export default Form
+export default Form;
