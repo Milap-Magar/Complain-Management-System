@@ -9,16 +9,16 @@ function Form() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert(`Your email is: ${data.email} and your name is: ${data.name}`)
+    alert(`Your Symbol no is: ${data.symbol}`)
   }
 
   return (
     <form onSubmit={handleSubmit}>
       <label>
-        Enter your email: <input type="email" name='email' value={data.email} onChange={handleChange} />
+        Enter your Symbol no: <input type="number" name='number' value={data.symbol} onChange={handleChange} />
       </label>
       <label>
-        Enter your name: <input type="text" name='name' value={data.name} onChange={handleChange} />
+        Enter your password: <input type="password" name='password' value={data.password} onChange={handleChange} />
       </label>
       <input type="submit" />
     </form>
