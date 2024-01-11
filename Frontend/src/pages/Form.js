@@ -14,7 +14,7 @@ function Form() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <label>
+      <label className='font-jet-mono'>
         Enter your Symbol no: <input type="number" name='number' value={data.symbol} onChange={handleChange} />
       </label>
       <label>
