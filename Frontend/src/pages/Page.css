@@ -1,0 +1,6 @@
+*:focus{
+    outline: none;
+}
+form{
+    backdrop-filter: blur(20px);
+}
