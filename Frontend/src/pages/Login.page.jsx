@@ -1,18 +1,23 @@
 import React, { useState } from "react";
-import image from "../assets/login.png";
-import bg_image from "../assets/background1.jpg";
-import { IoMdLogIn } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Page.css";
 
+import image from "../assets/login.png";
+import bg_image from "../assets/background1.jpg";
+import { IoMdLogIn } from "react-icons/io";
+
 const Login = () => {
+  const [err, setErr] = useState(null);
   const [showPwd, setShowPwd] = useState("password");
   const [isChecked, setIsChecked] = useState(false);
-
   const [values, setValues] = useState({
     symbol: "",
     password: "",
   });
+
+  const navigate = useNavigate();
+  axios.defaults.withCredentials = true;
 
   const handleShowPassword = () => {
     setShowPwd((showPwd) => (showPwd === "password" ? "text" : "password"));
@@ -24,7 +29,12 @@ const Login = () => {
     axios
       .post("http://localhost:8080/auth/adminlogin", values)
       .then((result) => {
-        return console.log("🚀 ~ handlesubmit ~ result:", result);
+        if (result.data.loginStatus) {
+
+          navigate("/dashboard");
+        }else{
+          setErr(result.data.Error);
+        }
       })
       .catch((err) => {
         return console.log("🚀 ~ handlesubmit ~ err:", err);
