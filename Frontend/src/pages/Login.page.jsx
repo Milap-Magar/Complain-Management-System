@@ -79,7 +79,6 @@ const Login = () => {
               <div className={`cursor-pointer`}>
                 <input
                   type="checkbox"
-                  name=""
                   id=""
                   defaultChecked={isChecked}
                   onClick={handleShowPassword}
@@ -89,7 +88,7 @@ const Login = () => {
               <div className={`flex justify-center items-center`}>
                 <button
                   type="submit"
-                  className={`border rounded-xl bg-afno-300 m-[10px] md:m-3 py-1 px-3 flex border-slate-800 hover:bg-black hover:text-white font-epic font-extrabold text-md`}
+                  className={`border rounded-xl bg-afno-300 m-[10px] md:m-3 py-1 px-3 flex border-slate-800 hover:bg-black hover:text-white font-black font-epic text-lg`}
                 >
                   Login
                   <IoMdLogIn className="w-6 h-6" />
@@ -98,7 +97,7 @@ const Login = () => {
             </div>
           </div>
           <span
-            className={`text-xs font-jet-mono text-slate-200 absolute bottom-0 left-2`}
+            className={`text-xs font-jet-mono text-cyan-300 absolute bottom-0 left-2`}
           >
             NOTE: This is only for PMC students.
           </span>
