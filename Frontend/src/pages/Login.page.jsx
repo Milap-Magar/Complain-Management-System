@@ -2,15 +2,33 @@ import React, { useState } from "react";
 import image from "../assets/login.png";
 import bg_image from "../assets/background1.jpg";
 import { IoMdLogIn } from "react-icons/io";
+import axios from "axios";
 import "./Page.css";
 
 const Login = () => {
   const [showPwd, setShowPwd] = useState("password");
   const [isChecked, setIsChecked] = useState(false);
 
+  const [values, setValues] = useState({
+    symbol: "",
+    password: "",
+  });
+
   const handleShowPassword = () => {
     setShowPwd((showPwd) => (showPwd === "password" ? "text" : "password"));
     setIsChecked((isChecked) => (isChecked === false ? true : false));
+  };
+
+  const handlesubmit = (e) => {
+    e.preventDefault();
+    axios
+      .post("http://localhost:8080/auth/adminlogin", values)
+      .then((result) => {
+        return console.log("🚀 ~ handlesubmit ~ result:", result);
+      })
+      .catch((err) => {
+        return console.log("🚀 ~ handlesubmit ~ err:", err);
+      });
   };
 
   return (
@@ -25,6 +43,7 @@ const Login = () => {
         />
         <form
           className={`bg-transparent border-[1px] border-slate-200 z-1 rounded-2xl w-[80vw] sm:w-[50vw] md:w-[40vw] h-[450px] md:h-[495px] shadow-2xl shadow-slate-950 relative`}
+          onSubmit={handlesubmit}
         >
           <div className={`flex flex-col justify-center items-center`}>
             <figure className={`w-auto h-[200px]`}>
@@ -42,16 +61,20 @@ const Login = () => {
               <input
                 placeholder="Symbol Number"
                 type="number"
-                name=""
-                className={`text-sm p-[4px] w-[250px] rounded-sm border border-slate-950 bg-transparent font-epic text-white`}
+                onChange={(e) =>
+                  setValues({ ...values, symbol: e.target.value })
+                }
+                className={`text-sm p-[4px] w-[250px] rounded-sm border border-slate-950 bg-transparent font-epic font-extrabold placeholder-slate-900`}
               />
               {/* password section */}
               <label htmlFor="password">Enter your Password: </label>
               <input
                 type={showPwd}
                 placeholder="Password"
-                name=""
-                className={`text-sm p-[4px] w-[250px] rounded-sm border border-slate-950 bg-transparent font-epic text-white`}
+                onChange={(e) =>
+                  setValues({ ...values, password: e.target.value })
+                }
+                className={`text-sm p-[4px] w-[250px] rounded-sm border border-slate-950 bg-transparent font-epic font-extrabold placeholder-slate-900`}
               />
               <div className={`cursor-pointer`}>
                 <input
@@ -74,7 +97,9 @@ const Login = () => {
               </div>
             </div>
           </div>
-          <span className={`text-xs font-jet-mono text-slate-200 absolute bottom-0 left-2`}>
+          <span
+            className={`text-xs font-jet-mono text-slate-200 absolute bottom-0 left-2`}
+          >
             NOTE: This is only for PMC students.
           </span>
         </form>
