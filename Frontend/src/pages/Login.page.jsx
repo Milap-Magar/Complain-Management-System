@@ -8,7 +8,7 @@ import bg_image from "../assets/background1.jpg";
 import { IoMdLogIn } from "react-icons/io";
 
 const Login = () => {
-  const [err, setErr] = useState(null);
+  // const [err, setErr] = useState(null);
   const [showPwd, setShowPwd] = useState("password");
   const [isChecked, setIsChecked] = useState(false);
   const [values, setValues] = useState({
@@ -24,16 +24,16 @@ const Login = () => {
     setIsChecked((isChecked) => (isChecked === false ? true : false));
   };
 
-  const handlesubmit = (e) => {
+  const handlesubmit = async(e) => {
     e.preventDefault();
-    axios
+    await axios
       .post("http://localhost:8080/auth/adminlogin", values)
       .then((result) => {
-        if (result.data.loginStatus) {
-
+        if (result.status == 200) {
           navigate("/dashboard");
-        }else{
-          setErr(result.data.Error);
+        } else {
+          console.error("Unexpected result format:", result);
+          console.log("error");
         }
       })
       .catch((err) => {
@@ -51,6 +51,7 @@ const Login = () => {
           alt=""
           className="w-full h-screen  absolute object-fill z-0"
         />
+        {/* <h1 className="bg-red-800 text-slate-900 absolute">{ err && err }</h1> */}
         <form
           className={`bg-transparent border-[1px] border-slate-200 z-1 rounded-2xl w-[80vw] sm:w-[50vw] md:w-[40vw] h-[450px] md:h-[495px] shadow-2xl shadow-slate-950 relative`}
           onSubmit={handlesubmit}
