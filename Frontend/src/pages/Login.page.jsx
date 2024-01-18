@@ -24,9 +24,9 @@ const Login = () => {
     setIsChecked((isChecked) => (isChecked === false ? true : false));
   };
 
-  const handlesubmit = (e) => {
+  const handlesubmit = async (e) => {
     e.preventDefault();
-    axios
+   await axios
       .post("http://localhost:8080/auth/adminlogin", values)
       .then((result) => {
         // return console.log("🚀 ~ handlesubmit ~ result:", result);
