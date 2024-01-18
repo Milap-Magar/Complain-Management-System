@@ -1,9 +1,16 @@
-import React from 'react'
+import React from "react";
+import bg_image from "../../assets/background1.jpg";
 
-const image = () => {
+const Image = () => {
   return (
-    <div>image</div>
-  )
-}
+    <>
+        <img
+          src={bg_image}
+          alt=""
+          className="w-full h-screen  absolute object-fill z-0"
+        />
+    </>
+  );
+};
 
-export default image
+export default Image;

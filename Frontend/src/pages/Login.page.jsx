@@ -4,11 +4,12 @@ import axios from "axios";
 import "./Page.css";
 
 import image from "../assets/login.png";
-import bg_image from "../assets/background1.jpg";
+// import bg_image from "../assets/background1.jpg";
+import Image from "../components/A-Componenets/Image";
 import { IoMdLogIn } from "react-icons/io";
 
 const Login = () => {
-  // const [err, setErr] = useState(null);
+  const [err, setErr] = useState(null);
   const [showPwd, setShowPwd] = useState("password");
   const [isChecked, setIsChecked] = useState(false);
   const [values, setValues] = useState({
@@ -24,16 +25,16 @@ const Login = () => {
     setIsChecked((isChecked) => (isChecked === false ? true : false));
   };
 
-  const handlesubmit = async(e) => {
+  const handlesubmit = (e) => {
     e.preventDefault();
-    await axios
+    axios
       .post("http://localhost:8080/auth/adminlogin", values)
       .then((result) => {
-        if (result.status == 200) {
-          navigate("/dashboard");
-        } else {
-          console.error("Unexpected result format:", result);
-          console.log("error");
+        // return console.log("🚀 ~ handlesubmit ~ result:", result);
+        if (result.data.loginStatus) {
+          navigate("/auth/dashboard");
+        }else{
+          setErr(result.data.Error);
         }
       })
       .catch((err) => {
@@ -46,12 +47,7 @@ const Login = () => {
       <div
         className={`min-w-full min-h-[100vh] flex justify-center items-center relative`}
       >
-        <img
-          src={bg_image}
-          alt=""
-          className="w-full h-screen  absolute object-fill z-0"
-        />
-        {/* <h1 className="bg-red-800 text-slate-900 absolute">{ err && err }</h1> */}
+        <Image />
         <form
           className={`bg-transparent border-[1px] border-slate-200 z-1 rounded-2xl w-[80vw] sm:w-[50vw] md:w-[40vw] h-[450px] md:h-[495px] shadow-2xl shadow-slate-950 relative`}
           onSubmit={handlesubmit}
@@ -66,7 +62,6 @@ const Login = () => {
               <h1 className="flex justify-center items-center text-lg font-jet-mono font-extrabold">
                 Complain Management System
               </h1>
-
               {/* symbol section */}
               <label htmlFor="symbol">Enter your Symbol Number:</label>
               <input
