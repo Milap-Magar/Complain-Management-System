@@ -4,7 +4,6 @@ import axios from "axios";
 import "./Page.css";
 
 import image from "../assets/login.png";
-// import bg_image from "../assets/background1.jpg";
 import Image from "../components/A-Componenets/Image";
 import { IoMdLogIn } from "react-icons/io";
 
@@ -42,6 +41,7 @@ const Login = () => {
       });
   };
 
+
   return (
     <>
       <div
@@ -57,20 +57,22 @@ const Login = () => {
               <img src={image} alt="main image" />
             </figure>
             <div
-              className={`flex flex-col justify-center w-90vw sm:gap-[0.5px] md:gap-1 py-1 md:py-8 cursor-pointer`}
+              className={`flex flex-col justify-center w-90vw sm:gap-[0.5px] md:gap-[0.5px] md:py-7 cursor-pointer`}
             >
+              <h4 className="text-red-900 text-sm flex justify-center items-center pt-2">{err && err}</h4>
               <h1 className="flex justify-center items-center text-lg font-jet-mono font-extrabold">
                 Complain Management System
               </h1>
               {/* symbol section */}
               <label htmlFor="symbol">Enter your Symbol Number:</label>
+              
               <input
                 placeholder="Symbol Number"
                 type="number"
                 onChange={(e) =>
                   setValues({ ...values, symbol: e.target.value })
                 }
-                className={`text-sm p-[4px] w-[250px] rounded-sm border border-slate-950 bg-transparent font-epic font-extrabold placeholder-slate-900`}
+                className={`text-sm p-[4px] w-[250px] md:w-[300px] rounded-sm border border-slate-950 bg-transparent font-epic font-extrabold placeholder-slate-900`}
               />
               {/* password section */}
               <label htmlFor="password">Enter your Password: </label>
@@ -80,7 +82,7 @@ const Login = () => {
                 onChange={(e) =>
                   setValues({ ...values, password: e.target.value })
                 }
-                className={`text-sm p-[4px] w-[250px] rounded-sm border border-slate-950 bg-transparent font-epic font-extrabold placeholder-slate-900`}
+                className={`text-sm p-[4px] w-[250px] md:w-[300px] rounded-sm border border-slate-950 bg-transparent font-epic font-extrabold placeholder-slate-900`}
               />
               <div className={`cursor-pointer`}>
                 <input
@@ -91,11 +93,11 @@ const Login = () => {
                 />
                 <span className="font-jet-mono text-sm">Show Password</span>
               </div>
-              <div className={`flex justify-center items-center`}>
+              <div className={`flex justify-center items-center`} >
                 <button
                   type="submit"
                   className={`border rounded-xl bg-afno-300 m-[10px] md:m-3 py-1 px-3 flex border-slate-800 hover:bg-black hover:text-white font-black font-epic text-lg`}
-                >
+                > 
                   Login
                   <IoMdLogIn className="w-6 h-6" />
                 </button>
