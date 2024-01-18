@@ -1,16 +1,31 @@
 import React from "react";
+import logo from "../assets/logo.jpg";
+import Button from "./A-Componenets/Button";
+import "./style.css";
 
 const Dashboard = () => {
   return (
     <>
-      <div className="flex">
-        <div className="flex flex-col h-screen p-3 bg-white shadow w-60">
-          <div className="space-y-3">
-            <div className="flex items-center">
+      <div className="flex bg-slate-200">
+        <div className="flex flex-col h-screen p-3 bg-sky-200 shadow-sky-700 shadow-2xl w-60">
+          <figure>
+            <img
+              src={logo}
+              alt="logo/image"
+              className={`logo w-full h-[10vh]`}
+            />
+          </figure>
+          <div className="space-y-10">
+            <div className="py-6 px-4 flex justify-center items-center">
               <h2 className="text-xl font-bold">Dashboard</h2>
             </div>
             <div className="flex-1">
-              <ul className="pt-2 pb-4 space-y-1 text-sm">
+              <ul className="py-1 px-3 space-y-5 text-sm flex flex-col justify-start items-center">
+                <li className="rounded-sm">
+                  <a href="#" className="flex items-center p-2 space-x-3">
+                    <Button />
+                  </a>
+                </li>
                 <li className="rounded-sm">
                   <a
                     href="#"
@@ -31,50 +46,6 @@ const Dashboard = () => {
                       />
                     </svg>
                     <span>Home</span>
-                  </a>
-                </li>
-                <li className="rounded-sm">
-                  <a
-                    href="#"
-                    className="flex items-center p-2 space-x-3 rounded-md"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="w-6 h-6"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth={2}
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"
-                      />
-                    </svg>
-                    <span>Inbox</span>
-                  </a>
-                </li>
-                <li className="rounded-sm">
-                  <a
-                    href="#"
-                    className="flex items-center p-2 space-x-3 rounded-md"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="w-6 h-6"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth={2}
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
-                      />
-                    </svg>
-                    <span>Orders</span>
                   </a>
                 </li>
                 <li className="rounded-sm">
@@ -131,29 +102,29 @@ const Dashboard = () => {
           </div>
         </div>
         <div className="container mx-auto mt-12">
-          <div className="grid grid-cols-1 gap-6 mb-6 lg:grid-cols-3">
-            <div className="w-full px-4 py-5 bg-white rounded-lg shadow">
+          <div className="grid grid-cols-1 m-4 gap-4 lg:grid-cols-3">
+            <div className="w-full  px-4 py-5 bg-sky-200 rounded-lg shadow-lg shadow-sky-700">
               <div className="text-sm font-medium text-gray-500 truncate">
-                Total users
+                Total Complaints
               </div>
               <div className="mt-1 text-3xl font-semibold text-gray-900">
-                12,00
+                120+
               </div>
             </div>
-            <div className="w-full px-4 py-5 bg-white rounded-lg shadow">
+            <div className="w-full px-4 py-5 bg-sky-200 rounded-lg shadow-lg shadow-sky-700">
               <div className="text-sm font-medium text-gray-500 truncate">
-                Total Profit
+                Total Users
               </div>
               <div className="mt-1 text-3xl font-semibold text-gray-900">
-                $ 450k
+                90+
               </div>
             </div>
-            <div className="w-full px-4 py-5 bg-white rounded-lg shadow">
+            <div className="w-full px-4 py-5 bg-sky-200 rounded-lg shadow-lg shadow-sky-700">
               <div className="text-sm font-medium text-gray-500 truncate">
-                Total Orders
+                Total Resolved
               </div>
               <div className="mt-1 text-3xl font-semibold text-gray-900">
-                20k
+                20
               </div>
             </div>
           </div>
