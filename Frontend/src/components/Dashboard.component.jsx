@@ -6,7 +6,7 @@ import "./style.css";
 const Dashboard = () => {
   return (
     <>
-      <div className="flex bg-slate-200">
+      <div className="flex bg-slate-200 h-screen w-full">
         <div className="flex flex-col h-screen p-3 bg-sky-200 shadow-sky-700 shadow-2xl w-60">
           <figure>
             <img
@@ -17,7 +17,9 @@ const Dashboard = () => {
           </figure>
           <div className="space-y-10">
             <div className="py-6 px-4 flex justify-center items-center">
-              <h2 className="text-xl font-bold">Dashboard</h2>
+              <h2 className="text-xl font-bold">
+                <a href="#">Dashboard</a>
+              </h2>
             </div>
             <div className="flex-1">
               <ul className="py-1 px-3 space-y-5 text-sm flex flex-col justify-start items-center">
@@ -101,9 +103,15 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
-        <div className="container mx-auto mt-12">
+        <div className="container mx-auto">
+          <div className="flex flex-col justify-center items-center py-8">
+            <h6>Patan Multiple Campus</h6>
+            <h2 className="text-3xl text-slate-700">
+              Complain Management System
+            </h2>
+          </div>
           <div className="grid grid-cols-1 m-4 gap-4 lg:grid-cols-3">
-            <div className="w-full  px-4 py-5 bg-sky-200 rounded-lg shadow-lg shadow-sky-700">
+            <div className="w-full  px-4 py-5 bg-sky-200 rounded-lg shadow-lg shadow-amber-200">
               <div className="text-sm font-medium text-gray-500 truncate">
                 Total Complaints
               </div>
@@ -111,7 +119,7 @@ const Dashboard = () => {
                 120+
               </div>
             </div>
-            <div className="w-full px-4 py-5 bg-sky-200 rounded-lg shadow-lg shadow-sky-700">
+            <div className="w-full px-4 py-5 bg-sky-200 rounded-lg shadow-lg shadow-amber-200">
               <div className="text-sm font-medium text-gray-500 truncate">
                 Total Users
               </div>
@@ -119,7 +127,7 @@ const Dashboard = () => {
                 90+
               </div>
             </div>
-            <div className="w-full px-4 py-5 bg-sky-200 rounded-lg shadow-lg shadow-sky-700">
+            <div className="w-full px-4 py-5 bg-sky-200 rounded-lg shadow-lg shadow-amber-200">
               <div className="text-sm font-medium text-gray-500 truncate">
                 Total Resolved
               </div>
