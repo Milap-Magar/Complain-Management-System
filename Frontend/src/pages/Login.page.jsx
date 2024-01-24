@@ -1,16 +1,20 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import axios from "../api/axios";
 import "./Page.css";
 
 import image from "../assets/login.png";
 import Image from "../components/A-Componenets/Image";
 import { IoMdLogIn } from "react-icons/io";
 
+
 const Login = () => {
-  const [err, setErr] = useState(null);
+  const [err, setErr] = useState("");
   const [showPwd, setShowPwd] = useState("password");
   const [isChecked, setIsChecked] = useState(false);
+  
+  const loginURL = "/auth/adminlogin";
+
   const [values, setValues] = useState({
     symbol: "",
     password: "",
@@ -26,21 +30,38 @@ const Login = () => {
 
   const handlesubmit = async (e) => {
     e.preventDefault();
-   await axios
-      .post("http://localhost:8080/auth/adminlogin", values)
-      .then((result) => {
-        // return console.log("🚀 ~ handlesubmit ~ result:", result);
-        if (result.data.loginStatus) {
+    try {
+      const response = await axios.post(loginURL, values);
+      console.log("🚀 ~ response ~ axios:", response);
+        if (response.status) {
           navigate("/auth/dashboard");
-        }else{
-          setErr(result.data.Error);
+        } else {
+          setErr(response.data.Error);
         }
-      })
-      .catch((err) => {
-        return console.log("🚀 ~ handlesubmit ~ err:", err);
-      });
+    } catch (error) {
+      if (!error.response) {
+        setErr("No Sever Response");
+      } else if (error.response.status === 409) {
+        setErr("Username unauthorized");
+      } else {
+        setErr("Regristration Failed");
+      }
+    }
+    
+    //  await axios
+    //     .post("http://localhost:8080/auth/adminlogin", values)
+    //     .then((result) => {
+    //       // return console.log("🚀 ~ handlesubmit ~ result:", result);
+    //       if (result.data.loginStatus) {
+    //         navigate("/auth/dashboard");
+    //       }else{
+    //         setErr(result.data.Error);
+    //       }
+    //     })
+    //     .catch((err) => {
+    //       return console.log("🚀 ~ handlesubmit ~ err:", err);
+    //     });
   };
-
 
   return (
     <>
@@ -59,13 +80,15 @@ const Login = () => {
             <div
               className={`flex flex-col justify-center w-90vw sm:gap-[0.5px] md:gap-[0.5px] md:py-7 cursor-pointer`}
             >
-              <h4 className="text-red-900 text-sm flex justify-center items-center pt-2">{err && err}</h4>
+              <h4 className="text-red-900 text-sm flex justify-center items-center pt-2">
+                {err && err}
+              </h4>
               <h1 className="flex justify-center items-center text-lg font-jet-mono font-extrabold">
                 Complain Management System
               </h1>
               {/* symbol section */}
               <label htmlFor="symbol">Enter your Symbol Number:</label>
-              
+
               <input
                 placeholder="Symbol Number"
                 type="number"
@@ -93,11 +116,11 @@ const Login = () => {
                 />
                 <span className="font-jet-mono text-sm">Show Password</span>
               </div>
-              <div className={`flex justify-center items-center`} >
+              <div className={`flex justify-center items-center`}>
                 <button
                   type="submit"
                   className={`border rounded-xl bg-afno-300 m-[10px] md:m-3 py-1 px-3 flex border-slate-800 hover:bg-black hover:text-white font-black font-epic text-lg`}
-                > 
+                >
                   Login
                   <IoMdLogIn className="w-6 h-6" />
                 </button>
