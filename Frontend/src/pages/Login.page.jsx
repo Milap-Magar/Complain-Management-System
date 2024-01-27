@@ -47,7 +47,6 @@ const Login = () => {
         setErr("Regristration Failed");
       }
     }
-    
     //  await axios
     //     .post("http://localhost:8080/auth/adminlogin", values)
     //     .then((result) => {
